@@ -1,0 +1,8 @@
+database/
+htmlcov/
+.coverage*
+.env*
+Makefile
+.git*
+**/__pycache__/*
+**/tests/*

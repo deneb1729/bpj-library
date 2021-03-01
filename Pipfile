@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 coverage = "*"
 pre-commit = "*"
+pylint = "*"
 
 [packages]
 django = "==3.1.7"

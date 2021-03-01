@@ -1,9 +1,8 @@
 import datetime
-import json
 
-from django.test import TransactionTestCase, Client
+from django.contrib.auth.models import Permission, User
+from django.test import Client, TransactionTestCase
 from django.urls import reverse
-from django.contrib.auth.models import User, Permission
 
 from catalog.models import Author
 

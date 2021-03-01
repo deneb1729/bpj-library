@@ -1,9 +1,9 @@
 import datetime
 
-from django.test import TestCase
 from django.contrib.auth.models import User
+from django.test import TestCase
 
-from catalog.models import Book, Genre, BookInstance, Author, Language
+from catalog.models import Author, Book, BookInstance, Genre, Language
 
 
 class TestBasicModels(TestCase):

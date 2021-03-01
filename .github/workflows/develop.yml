@@ -44,7 +44,7 @@ jobs:
       - name: Runing tests
         run: |
           python3 manage.py migrate
-          python3 manage.py test --settings=library.settings_test -v 2
+          python3 manage.py test --settings=library.settings_test -v 1
       - name: Success message
         run: echo finished working successfully!
 
@@ -60,8 +60,8 @@ jobs:
           heroku_email: ${{secrets.EMAIL_DEPLOY}}
           usedocker: true
           docker_heroku_process_type: web
-          healthcheck: https://${{secrets.HEROKU_APP}}.herokuapp.com/catalog
-          delay: 60
+          healthcheck: https://${{secrets.HEROKU_APP}}.herokuapp.com/health/
+          delay: 30
           rollbackonhealthcheckfailed: true
       - name: Success message
         run: echo Deploy successfully!

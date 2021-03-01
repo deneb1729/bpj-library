@@ -11,7 +11,7 @@ test-down:
 	docker-compose -f database/db_testing.yml down
 
 test-run:
-	python3 manage.py test --settings library.testing_settings -v 2 --failfast
+	python3 manage.py test --settings=library.settings_test -v 2
 
 develop-up: test-down db-up
 	python3 manage.py runserver

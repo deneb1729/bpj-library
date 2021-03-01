@@ -53,22 +53,22 @@ jobs:
       - name: Build and push
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push -a 'django-libraryapp' 'libraryapp-stage'
+        run: heroku container:push -a ${{secrets.HEROKU_APP}} 'libraryapp'
 
       - name: Release
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release -a 'django-libraryapp' 'libraryapp-stage'
+        run: heroku container:release -a ${{secrets.HEROKU_APP}} 'libraryapp'
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.4.6
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "django-libraryapp"
-          heroku_email: ${{secrets.EMAIL_DEPLOY}}
-      - name: Success message
-        run: echo Successfully Deploy.!
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: akhileshns/heroku-deploy@v3.4.6
+  #       with:
+  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+  #         heroku_app_name: ${{secrets.HEROKU_APP}}
+  #         heroku_email: ${{secrets.EMAIL_DEPLOY}}
+  #     - name: Success message
+  #       run: echo Successfully Deploy.!

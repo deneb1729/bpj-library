@@ -81,6 +81,6 @@ jobs:
           usedocker: true
           healthcheck: https://${{secrets.HEROKU_APP}}.herokuapp.com/catalog
           delay: 15
-          rollbackonhealthcheckfailed: true
+          # rollbackonhealthcheckfailed: true
       - name: Success message
         run: echo Successfully Deploy.!

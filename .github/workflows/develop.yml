@@ -44,7 +44,7 @@ jobs:
       - name: Runing tests
         run: |
           python3 manage.py migrate
-          python3 manage.py test --settings=base.settings_test -v 2
+          python3 manage.py test --settings=library.settings_test -v 2
       - name: Success message
         run: echo finished working successfully!
 

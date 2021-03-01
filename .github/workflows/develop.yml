@@ -61,7 +61,7 @@ jobs:
           usedocker: true
           docker_heroku_process_type: web
           healthcheck: https://${{secrets.HEROKU_APP}}.herokuapp.com/catalog
-          delay: 15
+          delay: 60
           rollbackonhealthcheckfailed: true
       - name: Success message
         run: echo Deploy successfully!

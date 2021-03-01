@@ -79,6 +79,7 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP}}
           heroku_email: ${{secrets.EMAIL_DEPLOY}}
           usedocker: true
+          docker_heroku_process_type: web
           healthcheck: https://${{secrets.HEROKU_APP}}.herokuapp.com/catalog
           delay: 15
           # rollbackonhealthcheckfailed: true

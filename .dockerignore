@@ -6,3 +6,11 @@ Makefile
 .git*
 **/__pycache__/*
 **/tests/*
+setup.cfg
+pyproject.toml
+Pipfile*
+README*
+.pre-commit-config.yaml
+.dockerignore
+Dockerfile
+docker-compose.yml

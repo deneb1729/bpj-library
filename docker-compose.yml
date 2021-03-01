@@ -18,6 +18,8 @@ services:
       EMAIL_HOST_USER: "username"
       EMAIL_HOST_PASSWORD: "password"
       EMAIL_PORT: 2525
+      ENVIRONMENT: "STAGE"
+      PORT: 8000
 
   database:
     image: postgres:11-alpine

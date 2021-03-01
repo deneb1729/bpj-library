@@ -8,6 +8,14 @@ on:
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: supersecret
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/testing
+      DJANGO_HOSTS: localhost,127.0.0.1
+      EMAIL_HOST: email.fakehost.io
+      EMAIL_HOST_USER: fakeuser
+      EMAIL_HOST_PASSWORD: fakepwd
+      EMAIL_PORT: 2525
     services:
       postgres:
         image: postgres:11-alpine

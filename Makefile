@@ -24,3 +24,6 @@ coverage-report:
 
 coverage-run:
 	coverage run --omit='*/.virtualvenvs/*' manage.py test
+
+server-up:
+	python3 manage.py runserver

@@ -1,0 +1,48 @@
+<div id="sidenav">
+    <a class="nav-link" href="{% url 'index' %}">Home</a>
+    <a class="nav-link" href="{% url 'books' %}">All books</a>
+    <a class="nav-link" href="{% url 'authors' %}">All authors</a>
+    <hr>
+    {% if user.is_authenticated %}
+        User: {{ user.get_username }}
+        <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+        <a class="nav-link" href="{% url 'my_borrowed' %}">My Borrowed</a>
+
+    {% else %}
+        <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+    {% endif %}
+    <hr>
+    {% if perms.catalog.can_mark_returned %}
+        Staff
+        <a class="nav-link" href="{% url 'all_borrowed' %}">All Borrowed</a>
+    {% endif %}
+</div>
+<div id="sidenav-sm">
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="p-4">
+        <a class="nav-link" href="{% url 'index' %}">Home</a>
+        <a class="nav-link" href="{% url 'books' %}">All books</a>
+        <a class="nav-link" href="{% url 'authors' %}">All authors</a>
+        <hr>
+        {% if user.is_authenticated %}
+            User: {{ user.get_username }}
+            <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+            <a class="nav-link" href="{% url 'my_borrowed' %}">My Borrowed</a>
+
+        {% else %}
+            <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+        {% endif %}
+        {% if perms.catalog.can_mark_returned %}
+            Staff
+            <a class="nav-link" href="{% url 'all_borrowed' %}">All Borrowed</a>
+        {% endif %}
+        </div>
+    </div>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> Menu
+            </button>
+        </div>
+    </nav>
+</div>

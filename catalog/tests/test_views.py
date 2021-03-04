@@ -27,19 +27,19 @@ class TestAuthorViews(TransactionTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "catalog/author_list.html")
 
-    def test_author_GET_create_no_authorized(self):
+    def test_author_POST_create_no_authorized(self):
         response = self.client.get(self.author_create)
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, "/accounts/login/?next=/catalog/author/create/")
 
-    def test_author_GET_update_no_authorized(self):
+    def test_author_POST_update_no_authorized(self):
         response = self.client.get(self.author_update)
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(
             response, "/accounts/login/?next=/catalog/author/1/update/"
         )
 
-    def test_author_GET_delete_no_authorized(self):
+    def test_author_DELETE_delete_no_authorized(self):
         response = self.client.get(self.author_delete)
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(

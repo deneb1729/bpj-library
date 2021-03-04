@@ -4,7 +4,7 @@ db-up:
 db-down:
 	docker-compose -f database/database.yml down
 
-test-up: db-down
+test-up:
 	docker-compose -f database/db_testing.yml up -d
 
 test-down:

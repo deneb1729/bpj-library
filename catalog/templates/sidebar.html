@@ -5,11 +5,11 @@
     <hr>
     {% if user.is_authenticated %}
         User: {{ user.get_username }}
-        <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+        <a class="nav-link" href="{% url 'logout'%}">Logout</a>
         <a class="nav-link" href="{% url 'my_borrowed' %}">My Borrowed</a>
 
     {% else %}
-        <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+        <a class="nav-link" href="{% url 'login'%}">Login</a>
     {% endif %}
     <hr>
     {% if perms.catalog.can_mark_returned %}
@@ -26,11 +26,11 @@
         <hr>
         {% if user.is_authenticated %}
             User: {{ user.get_username }}
-            <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+            <a class="nav-link" href="{% url 'logout'%}">Logout</a>
             <a class="nav-link" href="{% url 'my_borrowed' %}">My Borrowed</a>
 
         {% else %}
-            <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+            <a class="nav-link" href="{% url 'login'%}">Login</a>
         {% endif %}
         {% if perms.catalog.can_mark_returned %}
             Staff

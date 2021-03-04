@@ -21,6 +21,7 @@
         {% include 'sidebar.html' %}
       </div>
       <div class="col-md-10 container">
+
       {% block content %}{% endblock %}
 
       {% block pagination %}
@@ -39,7 +40,7 @@
                 </span>
             </div>
         {% endif %}
-      {% endblock %}
+      {% endblock pagination %}
       </div>
     </div>
 

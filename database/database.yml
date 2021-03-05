@@ -15,5 +15,20 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  database-test:
+    image: postgres:11-alpine
+    restart: unless-stopped
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "testing"
+    healthcheck:
+      test: ["CMD", "pg_isready -h localhost"]
+    volumes:
+      - testdata:/var/lib/postgresql/data
+
 volumes:
+  testdata:
   pgdata:

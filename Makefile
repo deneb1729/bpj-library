@@ -4,12 +4,6 @@ db-up:
 db-down:
 	docker-compose -f database/database.yml down
 
-test-up:
-	docker-compose -f database/db_testing.yml up -d
-
-test-down:
-	docker-compose -f database/db_testing.yml down
-
 test-run:
 	python3 manage.py test --settings=library.settings_test -v 2
 
@@ -17,13 +11,13 @@ develop-up: test-down db-up
 	python3 manage.py runserver
 
 coverage-html:
-	coverage html --omit='*/.virtualenvs/*'
+	coverage html --omit='*/.virtualenvs/*','*/migrations/*'
 
 coverage-report:
-	coverage report --omit='*/.virtualenvs/*'
+	coverage report --omit='*/.virtualenvs/*','*/migrations/*','*/tests/*','*/__init__.py'
 
 coverage-run:
-	coverage run --omit='*/.virtualvenvs/*' manage.py test
+	coverage run --omit='*/.virtualenvs/*' manage.py test
 
 server-up:
 	python3 manage.py runserver

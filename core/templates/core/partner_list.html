@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <h1>Partner List</h1>
+  <hr>
+
+  <div class="row">
+    <div class="card">
+      <br>
+      <a href="{% url 'partner_create' %}" class="btn btn-sm btn-outline-info">Create Partner</a>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if partners %}
+            {% for partner in partners %}
+              <tr>
+                <td>{{ partner.id }}</td>
+                <td>{{ partner.last_name }}</td>
+                <td>{{ partner.first_name }}</td>
+                <td>{{ partner.phone }}</td>
+                <td>{{ partner.email }}</td>
+                <td>
+                  <a href="{% url 'partner_update' partner.id %}" class="btn btn-sm btn-outline-info">Update</a>
+                  <a href="{% url 'partner_delete' partner.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

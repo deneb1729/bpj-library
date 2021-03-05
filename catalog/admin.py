@@ -14,7 +14,6 @@ class BookInline(admin.TabularInline):
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ("last_name", "first_name", "date_of_birth", "date_of_death")
     fields = ["last_name", "first_name", ("date_of_birth", "date_of_death")]
-    inlines = [BookInline]
 
 
 class BookInstanceInline(admin.TabularInline):
@@ -23,7 +22,7 @@ class BookInstanceInline(admin.TabularInline):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("title", "author", "display_genre")
+    list_display = ("title", "get_authors", "display_genre")
     inlines = [BookInstanceInline]
 
 

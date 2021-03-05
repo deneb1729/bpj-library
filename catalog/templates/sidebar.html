@@ -13,8 +13,9 @@
     {% endif %}
     <hr>
     {% if perms.catalog.can_mark_returned %}
-        Staff
+        Personal
         <a class="nav-link" href="{% url 'all_borrowed' %}">All Borrowed</a>
+        <a class="nav-link" href="{% url 'partners' %}">All Partners</a>
     {% endif %}
 </div>
 <div id="sidenav-sm">

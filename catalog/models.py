@@ -1,9 +1,10 @@
 import uuid
 from datetime import date
 
-from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+
+from core.models import Partner
 
 
 class Genre(models.Model):
@@ -23,7 +24,7 @@ class Genre(models.Model):
 class Book(models.Model):
 
     title = models.CharField(max_length=200)
-    author = models.ForeignKey("Author", on_delete=models.SET_NULL, null=True)
+    author = models.ManyToManyField("Author", related_name="books")
     summary = models.TextField(
         max_length=1000, help_text="Ingrese una breve descripción del libro:"
     )
@@ -46,6 +47,9 @@ class Book(models.Model):
 
     display_genre.short_description = "Genre"
 
+    def get_authors(self):
+        return "; ".join([str(item) for item in self.author.all()])
+
     def __str__(self):
         return self.title.upper()
 
@@ -61,24 +65,25 @@ class BookInstance(models.Model):
         help_text="ID único para este libro particular en toda la biblioteca",
     )
     book = models.ForeignKey("Book", on_delete=models.SET_NULL, null=True)
-    imprint = models.CharField(max_length=200)
+    editorial = models.CharField(max_length=200)
     due_back = models.DateField(null=True, blank=True)
 
     LOAN_STATUS = (
-        ("m", "Maintenance"),
-        ("o", "On Load"),
         ("a", "Available"),
-        ("r", "Reserved"),
+        ("b", "Borrowed"),
+        ("m", "Maintenance"),
     )
 
     status = models.CharField(
         max_length=1,
         choices=LOAN_STATUS,
         blank=True,
-        default="m",
+        default="a",
         help_text="Disponibilidad del libro",
     )
-    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    borrower = models.ForeignKey(
+        Partner, on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     class Meta:
         verbose_name = "bookinstance"

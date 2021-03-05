@@ -1,9 +1,9 @@
 import datetime
 
-from django.contrib.auth.models import User
 from django.test import TestCase
 
 from catalog.models import Author, Book, BookInstance, Genre, Language
+from core.models import Partner
 
 
 class TestBasicModels(TestCase):
@@ -41,12 +41,12 @@ class TestBookModel(TestCase):
         )
         book1 = Book.objects.create(
             title="My book",
-            author=author1,
             summary="This is a summary",
             isbn="123456",
             language=language1,
         )
         book1.genre.set(Genre.objects.all())
+        book1.author.set(Author.objects.all())
 
     def test_book_methods(self):
         book = Book.objects.first()
@@ -56,15 +56,18 @@ class TestBookModel(TestCase):
 
     def test_book_instance_methods(self):
         book1 = Book.objects.first()
-        user1 = User.objects.create_user(username="john", password="123456")
+        partner1 = Partner.objects.create(
+            first_name="john",
+            last_name="doe",
+        )
         bookinst1 = BookInstance.objects.create(
             book=book1,
-            imprint="second edition",
+            editorial="second edition",
             due_back=(datetime.date.today() + datetime.timedelta(weeks=2)),
-            status="o",
-            borrower=user1,
+            status="a",
+            borrower=partner1,
         )
 
-        self.assertEquals(bookinst1.get_status_display(), "On Load")
+        self.assertEquals(bookinst1.get_status_display(), "Available")
         self.assertTrue("My book" in str(bookinst1))
         self.assertFalse(bookinst1.is_overdue)

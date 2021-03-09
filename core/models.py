@@ -26,7 +26,7 @@ class Partner(models.Model):
         verbose_name_plural = "partners"
 
     def __str__(self):
-        return "{0}, {1}".format(self.last_name, self.first_name)
+        return "{0}, {1}".format(self.last_name, self.first_name).upper()
 
     def get_absolute_url(self):
         return reverse("partner_detail", args=[str(self.id)])

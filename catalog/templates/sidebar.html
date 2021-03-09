@@ -1,43 +1,57 @@
 <div id="sidenav">
-    <a class="nav-link" href="{% url 'index' %}">Home</a>
-    <a class="nav-link" href="{% url 'books' %}">All books</a>
-    <a class="nav-link" href="{% url 'authors' %}">All authors</a>
+    <a class="nav-link text-primary" href="{% url 'index' %}"><i class="fas fa-home"></i>  Home</a>
+    <a class="nav-link text-primary" href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a>
+    <a class="nav-link text-primary" href="{% url 'authors' %}"><i class="fas fa-user-edit"></i> Authors</a>
     <hr>
     {% if user.is_authenticated %}
-        User: {{ user.get_username }}
-        <a class="nav-link" href="{% url 'logout'%}">Logout</a>
-        <a class="nav-link" href="{% url 'my_borrowed' %}">My Borrowed</a>
+        Hi, {{ user.get_username.upper }}
+        <a class="nav-link text-primary" href="{% url 'logout'%}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a class="nav-link text-primary" href="{% url 'my_borrowed' %}">My Borrowed</a>
 
     {% else %}
-        <a class="nav-link" href="{% url 'login'%}">Login</a>
+        <a class="nav-link  text-primary" href="{% url 'login'%}"><i class="fas fa-power-off"></i> Login</a>
     {% endif %}
     <hr>
     {% if perms.catalog.can_mark_returned %}
         Personal
-        <a class="nav-link" href="{% url 'all_borrowed' %}">All Borrowed</a>
-        <a class="nav-link" href="{% url 'partners' %}">All Partners</a>
+        <a class="nav-link text-primary" href="{% url 'all_borrowed' %}">All Borrowed</a>
+        <a class="nav-link text-primary" href="{% url 'partners' %}"><i class="fas fa-id-card"></i> Partners</a>
+        <hr>
     {% endif %}
+    Institución
+    <a href="#" class="nav-link text-primary"><i class="fas fa-landmark"></i> Historia Institucional</a>
+    <a href="#" class="nav-link text-primary"><i class="fas fa-user-tie"></i> Comisión Directiva</a>
+    <a href="#" class="nav-link text-primary"><i class="fas fa-th-large"></i> Servicios y Secciones</a>
+    <a href="#" class="nav-link text-primary"><i class="far fa-address-book"></i> Contacto</a>
 </div>
+
+
 <div id="sidenav-sm">
     <div class="collapse" id="navbarToggleExternalContent">
-        <div class="p-4">
-        <a class="nav-link" href="{% url 'index' %}">Home</a>
-        <a class="nav-link" href="{% url 'books' %}">All books</a>
-        <a class="nav-link" href="{% url 'authors' %}">All authors</a>
+        <a class="nav-link text-primary" href="{% url 'index' %}"><i class="fas fa-home"></i>  Home</a>
+        <a class="nav-link text-primary" href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a>
+        <a class="nav-link text-primary" href="{% url 'authors' %}"><i class="fas fa-user-edit"></i> Authors</a>
         <hr>
         {% if user.is_authenticated %}
-            User: {{ user.get_username }}
-            <a class="nav-link" href="{% url 'logout'%}">Logout</a>
-            <a class="nav-link" href="{% url 'my_borrowed' %}">My Borrowed</a>
+            Hi, {{ user.get_username.upper }}
+            <a class="nav-link text-primary" href="{% url 'logout'%}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a class="nav-link text-primary" href="{% url 'my_borrowed' %}">My Borrowed</a>
 
         {% else %}
-            <a class="nav-link" href="{% url 'login'%}">Login</a>
+            <a class="nav-link  text-primary" href="{% url 'login'%}"><i class="fas fa-power-off"></i> Login</a>
         {% endif %}
+        <hr>
         {% if perms.catalog.can_mark_returned %}
-            Staff
-            <a class="nav-link" href="{% url 'all_borrowed' %}">All Borrowed</a>
+            Personal
+            <a class="nav-link text-primary" href="{% url 'all_borrowed' %}">All Borrowed</a>
+            <a class="nav-link text-primary" href="{% url 'partners' %}"><i class="fas fa-id-card"></i> Partners</a>
+            <hr>
         {% endif %}
-        </div>
+        Institución
+        <a href="#" class="nav-link text-primary"><i class="fas fa-landmark"></i> Historia Institucional</a>
+        <a href="#" class="nav-link text-primary"><i class="fas fa-user-tie"></i> Comisión Directiva</a>
+        <a href="#" class="nav-link text-primary"><i class="fas fa-th-large"></i> Servicios y Secciones</a>
+        <a href="#" class="nav-link text-primary"><i class="far fa-address-book"></i> Contacto</a>
     </div>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">

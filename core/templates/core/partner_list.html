@@ -10,7 +10,7 @@
   <div class="row">
     <div class="card">
       <br>
-      <a href="{% url 'partner_create' %}" class="btn btn-sm btn-outline-info">Create Partner</a>
+      <a href="{% url 'partner_create' %}" class="btn btn-sm btn-outline-primary">Create Partner</a>
       <br>
       <table class="table">
         <thead>
@@ -33,7 +33,7 @@
                 <td>{{ partner.phone }}</td>
                 <td>{{ partner.email }}</td>
                 <td>
-                  <a href="{% url 'partner_update' partner.id %}" class="btn btn-sm btn-outline-info">Update</a>
+                  <a href="{% url 'partner_update' partner.id %}" class="btn btn-sm btn-outline-primary">Update</a>
                   <a href="{% url 'partner_delete' partner.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
                 </td>
               </tr>

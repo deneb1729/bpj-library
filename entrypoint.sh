@@ -2,6 +2,7 @@
 
 if [ $ENVIRONMENT = 'STAGE' ];
 then
+    python manage.py flush --no-input
     python manage.py migrate --no-input
 fi
 

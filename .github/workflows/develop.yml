@@ -65,3 +65,12 @@ jobs:
           rollbackonhealthcheckfailed: true
       - name: Success message
         run: echo Deploy successfully!
+
+  dast:
+    needs: deploy
+    runs-in: ubuntu-latest
+    steps:
+      - name: OWASP ZAP Full Scan
+        uses: zaproxy/action-full-scan@v0.2.0
+        with:
+          target: "https://${{secrets.HEROKU_APP}}.herokuapp.com"

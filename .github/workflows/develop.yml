@@ -68,8 +68,9 @@ jobs:
 
   dast:
     needs: deploy
-    runs-in: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: OWASP ZAP Full Scan
         uses: zaproxy/action-full-scan@v0.2.0
         with:

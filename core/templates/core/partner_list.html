@@ -24,7 +24,6 @@
           </tr>
         </thead>
         <tbody>
-          {% if partners %}
             {% for partner in partners %}
               <tr>
                 <td>{{ partner.id }}</td>
@@ -37,8 +36,8 @@
                   <a href="{% url 'partner_delete' partner.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
                 </td>
               </tr>
+            {% empty %}
             {% endfor %}
-          {% endif %}
         </tbody>
       </table>
     </div>

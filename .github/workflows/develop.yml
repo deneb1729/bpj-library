@@ -63,6 +63,10 @@ jobs:
           healthcheck: https://${{secrets.HEROKU_APP}}.herokuapp.com/health/
           delay: 30
           rollbackonhealthcheckfailed: true
+        env:
+          HD_SESSION_COOKIE_SECURE: "True"
+          HD_CSRF_COOKIE_SECURE: "True"
+
       - name: Success message
         run: echo Deploy successfully!
 

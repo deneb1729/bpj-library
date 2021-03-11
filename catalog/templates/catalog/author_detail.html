@@ -11,6 +11,8 @@
     {% for book in author.book_set.all %}
       <dt><a href="{% url 'book_detail' book.pk %}">{{book}}</a> ({{book.bookinstance_set.all.count}})</dt>
       <dd>{{book.summary}}</dd>
+    {% empty %}
+      <p>Author not have registered books in this library.</p>
     {% endfor %}
   </dl>
 </div>

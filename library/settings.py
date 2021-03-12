@@ -104,6 +104,39 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "stdout": {
+            "format": "%(asctime)s %(levelname)s %(message)s",
+            "datefmt": "%Y-%m-%dT%H:%M:%S%z",
+        },
+    },
+    "handlers": {
+        "stdout": {
+            "class": "logging.StreamHandler",
+            "formatter": "stdout",
+        },
+        "scout_apm": {
+            "level": config("SCOUT_LOG_LEVEL", default="DEBUG", cast=str),
+            "class": "logging.FileHandler",
+            "filename": "scout_apm_debug.log",
+        },
+    },
+    "root": {
+        "handlers": ["stdout"],
+        "level": config("LOG_LEVEL", default="INFO", cast=str),
+    },
+    "loggers": {
+        "scout_apm": {
+            "handlers": ["scout_apm"],
+            "level": config("SCOUT_LOG_LEVEL", default="DEBUG", cast=str),
+            "propagate": True,
+        },
+    },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -144,6 +177,6 @@ CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE", default=False, cast=bool)
 X_FRAME_OPTIONS = config("X_FRAME_OPTIONS", default="SAMEORIGIN", cast=str)
 
 # Scout APM settings
-SCOUT_MONITOR = config("SEND_MAIL", default=False, cast=bool)
-SCOUT_KEY = config("SEND_MAIL", default="superkey", cast=str)
+SCOUT_MONITOR = config("SCOUT_MONITOR", default=False, cast=bool)
+SCOUT_KEY = config("SCOUT_KEY", default="superkey", cast=str)
 SCOUT_NAME = "BPJ Library"

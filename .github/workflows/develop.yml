@@ -63,7 +63,7 @@ jobs:
       - name: Bandit check
         env:
           EXCLUDE_FILES: "tests,migrations,__pycache__,templates,static"
-        run: bandit -x $BANDIT_EXCLUDE -r **/*.py -ll -iii
+        run: bandit -x $EXCLUDE_FILES -r **/*.py -ll -iii
       - name: Safety check
         run: safety check --full-report -r requirements.txt
 

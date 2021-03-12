@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "catalog.apps.CatalogConfig",
     "core.apps.CoreConfig",
+    "scout_apm.django",
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,9 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", default=False, cast=bool)
 SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE", default=False, cast=bool)
 CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE", default=False, cast=bool)
+X_FRAME_OPTIONS = config("X_FRAME_OPTIONS", default="SAMEORIGIN", cast=str)
+
+# Scout APM settings
+SCOUT_MONITOR = config("SEND_MAIL", default=False, cast=bool)
+SCOUT_KEY = config("SEND_MAIL", default="superkey", cast=str)
+SCOUT_NAME = "BPJ Library"

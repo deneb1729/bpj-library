@@ -29,3 +29,5 @@ migrations:
 server-create-user:
 	python3 manage.py createsuperuser
 
+requirements:
+	pipenv lock -r > requirements.txt

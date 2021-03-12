@@ -89,6 +89,7 @@ jobs:
           HD_CSRF_COOKIE_SECURE: "True"
           HD_SCOUT_MONITOR: "True"
           HD_SCOUT_KEY: ${{secrets.SCOUT_KEY}}
+          HD_SQREEN_TOKEN: ${{secrets.SQREEN_TOKEN}}
 
       - name: Success message
         run: echo Deploy successfully!

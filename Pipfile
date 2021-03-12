@@ -16,6 +16,7 @@ psycopg2-binary = "==2.8.6"
 gunicorn = "==20.0.4"
 whitenoise = "==5.2.0"
 scout-apm = "==2.18.0"
+sqreen = "==1.26.2"
 
 [requires]
 python_version = "3.7"

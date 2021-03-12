@@ -41,6 +41,7 @@ class Book(models.Model):
     class Meta:
         verbose_name = "book"
         verbose_name_plural = "books"
+        ordering = ["id", "title"]
 
     def display_genre(self):
         return ", ".join([genre.name for genre in self.genre.all()[:3]])

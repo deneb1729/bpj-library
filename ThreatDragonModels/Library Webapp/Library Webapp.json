@@ -1,0 +1,18 @@
+{
+  "summary": {
+    "title": "Library Webapp",
+    "owner": "JJQuispe",
+    "description": "Library system"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "Base Diagram",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "diagramType": "STRIDE",
+        "id": 0
+      }
+    ]
+  }
+}

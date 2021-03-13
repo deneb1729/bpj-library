@@ -3,17 +3,53 @@
 {% block content %}
 
 <h1>Author List</h1>
+<hr>
+<div class="card card-body">
 
-<ul>
-{% for author in author_list %}
-  <li>
-    <a href="{{ author.get_absolute_url }}">
-    {{ author }} ({{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %})
+  <div class="d-grid gap-2 d-md-block">
+    <a href="{% url 'author_create' %}" class="btn text-primary">
+      <i class="fas fa-plus"></i> Create author
     </a>
-  </li>
-{% empty %}
-  <p>There are no authors available.</p>
-{% endfor %}
-</ul>
+  </div>
+  <hr>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+          {% for head in head_list %}
+          <th scope="col">{{head}}</th>
+          {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+      <tr>
+          <td>{{object.first_name}}</td>
+          <td>{{object.last_name}}</td>
+          <td>
+            {% if object.date_of_birth %}
+             {{object.date_of_birth}}
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>
+            {% if object.date_of_death %}
+             {{object.date_of_death}}
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>
+            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" class="fs-5 p-2 text-success" href="{{ object.get_absolute_url }}"><i class="fas fa-clipboard-list"></i></a>
+            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Update" class="fs-5 p-2 text-primary" href="{% url 'author_update' object.id %}"><i class="fas fa-edit"></i></a>
+            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="fs-5 p-2 text-danger" href="{% url 'author_delete' object.id %}"><i class="fas fa-trash-alt"></i></a>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 
 {% endblock %}

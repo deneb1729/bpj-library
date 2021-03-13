@@ -7,8 +7,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
-from .forms import RenewBookForm
-from .models import Author, Book, BookInstance, Genre
+from .forms import AuthorForm, RenewBookForm
+from .models import Author, Book, BookInstance, Genre, Language
 
 
 def index(request):
@@ -30,23 +30,6 @@ def index(request):
     }
 
     return render(request, "index.html", context=context)
-
-
-class BookListView(generic.ListView):
-    model = Book
-    paginate_by = 2
-
-
-class BookDetailView(generic.DetailView):
-    model = Book
-
-
-class AuthorListView(generic.ListView):
-    model = Author
-
-
-class AuthorDetailView(generic.DetailView):
-    model = Author
 
 
 class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
@@ -101,15 +84,26 @@ def renew_book_librarian(request, pk):
 
 
 class AuthorCreateView(PermissionRequiredMixin, generic.CreateView):
+    form_class = AuthorForm
     model = Author
     permission_required = "catalog.can_mark_returned"
-    fields = "__all__"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Create Author"
+        return context
 
 
 class AuthorUpdateView(PermissionRequiredMixin, generic.UpdateView):
+    form_class = AuthorForm
     model = Author
+    success_url = reverse_lazy("authors")
     permission_required = "catalog.can_mark_returned"
-    fields = ["first_name", "last_name", "date_of_birth", "date_of_death"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Update Author"
+        return context
 
 
 class AuthorDeleteView(PermissionRequiredMixin, generic.DeleteView):
@@ -117,6 +111,26 @@ class AuthorDeleteView(PermissionRequiredMixin, generic.DeleteView):
     permission_required = "catalog.can_mark_returned"
     success_url = reverse_lazy("authors")
     template_name_suffix = "_delete_successfull"
+
+
+class AuthorListView(generic.ListView):
+    model = Author
+    context_object_name = "object_list"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["head_list"] = [
+            "First Name",
+            "Last Name",
+            "Date of Birth",
+            "Date of Death",
+            "Actions",
+        ]
+        return context
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
 
 
 class BookCreateView(PermissionRequiredMixin, generic.CreateView):
@@ -136,3 +150,19 @@ class BookDeleteView(PermissionRequiredMixin, generic.DeleteView):
     permission_required = "catalog.can_mark_returned"
     success_url = reverse_lazy("books")
     template_name_suffix = "_delete_successfull"
+
+
+class BookListView(generic.ListView):
+    model = Book
+    paginate_by = 2
+
+
+class BookDetailView(generic.DetailView):
+    model = Book
+
+
+class LanguageCreateView(PermissionRequiredMixin, generic.CreateView):
+    model = Language
+    permission_required = "catalog.can_mark_returned"
+    fields = "__all__"
+    success_url = reverse_lazy("books")

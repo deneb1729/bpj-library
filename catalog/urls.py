@@ -21,6 +21,11 @@ urlpatterns = [
     ),
     url(r"^books/$", views.BookListView.as_view(), name="books"),
     url(r"^book/create/$", views.BookCreateView.as_view(), name="book_create"),
+    url(
+        r"^language/create/$",
+        views.LanguageCreateView.as_view(),
+        name="language_create",
+    ),
     url(r"^book/(?P<pk>\d+)$", views.BookDetailView.as_view(), name="book_detail"),
     url(
         r"^book/(?P<pk>\d+)/update/$",

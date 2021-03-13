@@ -2,13 +2,19 @@
 
 {% block content %}
 
-<h1>Delete Author</h1>
+<h2>Delete Author</h2>
+<hr>
 
-<p>Are you sure you want to delete the author: {{ author }}?</p>
+<div class="card card-body">
+  <p class="fs-5">Are you sure you want to delete the author: {{ author }}?</p>
 
-<form action="" method="POST">
-  {% csrf_token %}
-  <input type="submit" action="" value="Yes, delete." />
-</form>
+  <form action="" method="POST">
+    {% csrf_token %}
+
+    <a class="btn btn-outline-primary" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+    <input class="btn btn-outline-danger" type="submit" action="" value="Confirm" />
+  </form>
+</div>
+
 
 {% endblock %}

@@ -1,17 +1,28 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Book List</h1>
+
+<h1>Book List</h1>
+<hr>
+<div class="card card-body border-dark mb-3">
+
+  <div class="d-grid gap-2 d-md-block">
+    <a href="{% url 'book_create' %}" class="btn text-primary">
+      <i class="fas fa-plus"></i> Create book
+    </a>
+  </div>
+  <hr>
 
   <ul>
-
     {% for book in book_list %}
       <li>
         <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
       </li>
     {% empty %}
-      <p>There are no books in the library.</p>
+      <p class="fs-4">There are no books in the library.</p>
     {% endfor %}
-
   </ul>
+
+</div>
+
 {% endblock %}

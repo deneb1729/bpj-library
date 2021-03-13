@@ -4,6 +4,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+from .models import Author
+
 
 class RenewBookForm(forms.Form):
     renewal_date = forms.DateField(
@@ -21,4 +23,18 @@ class RenewBookForm(forms.Form):
 
         help_texts = {
             "due_back": _("Enter a date between now and 3 weeks (default 2)."),
+        }
+
+
+class AuthorForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = "__all__"
+        widgets = {
+            "date_of_birth": forms.DateInput(
+                format=("%Y-%m-%d"), attrs={"type": "date"}
+            ),
+            "date_of_death": forms.DateInput(
+                format=("%Y-%m-%d"), attrs={"type": "date"}
+            ),
         }

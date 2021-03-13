@@ -1,20 +1,22 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Author: <b>{{ author }}</b></h1>
-<h4>{{ author.date_of_birth }} - {% if author.date_of_death %} {{author.date_of_death}} {% endif %}</h4>
+<h2>Author: <b>{{ author }}</b></h2>
+<p class="fs-4">{{ author.date_of_birth }} - {% if author.date_of_death %} {{author.date_of_death}} {% endif %}</p>
 
-<div style="margin-left:20px;margin-top:20px">
-  <h4>Books</h4>
+<div style="margin-left:20px; margin-top:20px">
+  <div class="card card-body">
+    <h2>Books</h2>
 
-  <dl>
-    {% for book in author.book_set.all %}
+    <dl>
+      {% for book in author.book_set.all %}
       <dt><a href="{% url 'book_detail' book.pk %}">{{book}}</a> ({{book.bookinstance_set.all.count}})</dt>
       <dd>{{book.summary}}</dd>
-    {% empty %}
-      <p>Author not have registered books in this library.</p>
-    {% endfor %}
-  </dl>
+      {% empty %}
+      <p class="fs-5">Author not have registered books in this library.</p>
+      {% endfor %}
+    </dl>
+  </div>
 </div>
 
 {% endblock %}

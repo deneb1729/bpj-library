@@ -1,13 +1,44 @@
 {% extends "base_generic.html" %}
+{% load static %}
 
 {% block content %}
 
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit" />
+<h2>{{title}}</h2>
+<hr>
 
-</form>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card card-body p-4">
+            <form action="" method="post">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-floating mb-3">
+                        {{field}}
+                        <label for="{{ field.id_for_label }}">{{field.label_tag}}</label>
+                    </div>
+                {% endfor %}
+
+                <div class="row p-3">
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% block script %}
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    var field_input_list = document.getElementsByTagName('input')
+
+    for (let field in field_input_list) {
+        if(field_input_list[field].name && field_input_list[field].type !== 'hidden') {
+            field_input_list[field].className = 'form-control'
+            field_input_list[field].placeholder = getPlaceholder(field_input_list[field].name)
+        }
+    }
+</script>
+{% endblock script %}
+
 {% endblock %}

@@ -1,0 +1,20 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "09:00"
+    timezone: America/Argentina/Buenos_Aires
+  open-pull-requests-limit: 3
+  target-branch: develop
+  versioning-strategy: lockfile-only
+  ignore:
+  - dependency-name: pylint
+    versions:
+    - 2.7.4
+    - 2.8.1
+  - dependency-name: pre-commit
+    versions:
+    - 2.11.1
+    - 2.12.0
